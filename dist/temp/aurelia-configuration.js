@@ -11,8 +11,6 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _dec, _class;
 
-exports.configure = configure;
-
 var _deepExtend = require('deep-extend');
 
 var _deepExtend2 = _interopRequireDefault(_deepExtend);
@@ -243,20 +241,3 @@ var Configure = exports.Configure = (_dec = (0, _aureliaDependencyInjection.inje
 
     return Configure;
 }()) || _class);
-function configure(aurelia, configCallback) {
-    var instance = aurelia.container.get(Configure);
-
-    if (configCallback !== undefined && typeof configCallback === 'function') {
-        configCallback(instance);
-    }
-
-    return new Promise(function (resolve, reject) {
-        instance.loadConfig().then(function () {
-            return resolve();
-        }).catch(function () {
-            reject(new Error('Configuration file could not be loaded'));
-        });
-    });
-}
-
-exports.Configure = Configure;
